@@ -1,20 +1,23 @@
-# 🔮 Subscription Predictor
+# 🎯 Subsify
 
-A machine learning web app that predicts customer subscription likelihood using Naive Bayes algorithm.
+AI-powered customer subscription prediction platform with advanced machine learning models.
 
 ## Features
 
-- **Interactive Web Interface**: Easy-to-use form for entering customer data
-- **Real-time Predictions**: Instant subscription probability calculations
-- **Customer Insights**: Actionable recommendations based on customer behavior
-- **Model Transparency**: Clear explanation of prediction factors
+- **Interactive Web Interface**: User-friendly form for entering customer data
+- **Real-time Predictions**: Instant subscription probability calculations with confidence scores
+- **Customer Insights**: Actionable recommendations based on customer behavior patterns
+- **Model Transparency**: Clear explanation of prediction factors and feature importance
+- **Professional Branding**: Clean, modern interface designed for business users
 
 ## Model Details
 
-- **Algorithm**: Gaussian Naive Bayes
+- **Primary Algorithm**: Gaussian Naive Bayes (deployed in web app)
+- **Secondary Algorithm**: Neural Network (available for comparison)
 - **Features**: 9 customer attributes (usage patterns, behavior metrics, demographics)
-- **Training Data**: 1000 synthetic customer records
-- **Performance**: Optimized for subscription prediction accuracy
+- **Training Data**: 1000 synthetic customer records with identical train/test splits
+- **Performance**: Both models optimized for subscription prediction accuracy
+- **Validation**: Stratified 80/20 split with consistent random state (42) for reproducibility
 
 ## Usage
 
@@ -55,8 +58,12 @@ streamlit run streamlit_app.py
 
 ## Files
 
-- `streamlit_app.py`: Main web application
-- `naive_bayes_subscription_model.joblib`: Trained ML model
-- `naive_bayes_scaler.joblib`: Feature scaler
+- `streamlit_app.py`: Main Subsify web application
+- `naive_bayes_model.py`: Naive Bayes model training script
+- `neural_network_model.py`: Neural Network model training script
+- `naive_bayes_subscription_model.joblib`: Trained Naive Bayes model
+- `naive_bayes_scaler.joblib`: Feature scaler for Naive Bayes
+- `neural_network_subscription_model.joblib`: Trained Neural Network model
+- `neural_network_scaler.joblib`: Feature scaler for Neural Network
 - `requirements.txt`: Python dependencies
-- `naive_bayes_model.py`: Model training script (for reference)
+- `README.md`: This documentation

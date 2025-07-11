@@ -4,8 +4,8 @@ import numpy as np
 
 # Configure page
 st.set_page_config(
-    page_title="Subscription Predictor",
-    page_icon="🔮",
+    page_title="Subsify",
+    page_icon="�",
     layout="wide"
 )
 
@@ -23,8 +23,8 @@ def load_models():
 nb_model, scaler = load_models()
 
 # Main app
-st.title("🔮 Subscription Predictor")
-st.write("Enter customer data to predict subscription likelihood using Naive Bayes:")
+st.title("� Subsify")
+st.write("AI-powered customer subscription prediction platform")
 
 if nb_model is not None and scaler is not None:
     # Create input fields in columns
