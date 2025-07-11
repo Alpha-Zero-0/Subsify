@@ -718,4 +718,4 @@ with st.sidebar:
 
 # Footer
 st.markdown("---")
-st.markdown("**Subsify** - Built with ❤️ using Streamlit | Advanced AI-powered subscription prediction")
+st.markdown("**Subsify** - Advanced AI-powered subscription prediction")
