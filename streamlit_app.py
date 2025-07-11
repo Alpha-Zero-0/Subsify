@@ -13,20 +13,43 @@ st.set_page_config(
 @st.cache_resource
 def load_models():
     try:
+        # Load Naive Bayes model
         nb_model = joblib.load("naive_bayes_subscription_model.joblib")
-        scaler = joblib.load("naive_bayes_scaler.joblib")
-        return nb_model, scaler
-    except FileNotFoundError:
-        st.error("Model files not found. Please make sure the .joblib files are in the same directory.")
-        return None, None
+        nb_scaler = joblib.load("naive_bayes_scaler.joblib")
+        
+        # Load Neural Network model
+        nn_model = joblib.load("neural_network_subscription_model.joblib")
+        nn_scaler = joblib.load("neural_network_scaler.joblib")
+        
+        return nb_model, nb_scaler, nn_model, nn_scaler
+    except FileNotFoundError as e:
+        st.error(f"Model files not found: {e}")
+        return None, None, None, None
 
-nb_model, scaler = load_models()
+nb_model, nb_scaler, nn_model, nn_scaler = load_models()
 
 # Main app
-st.title("� Subsify")
+st.title("🎯 Subsify")
 st.write("AI-powered customer subscription prediction platform")
 
-if nb_model is not None and scaler is not None:
+# Model selection
+if nb_model is not None and nn_model is not None:
+    model_choice = st.selectbox(
+        "🤖 Select ML Model",
+        ["Naive Bayes", "Neural Network"],
+        help="Choose between Naive Bayes (fast, interpretable) or Neural Network (complex patterns)"
+    )
+    
+    # Set current model and scaler based on selection
+    if model_choice == "Naive Bayes":
+        current_model = nb_model
+        current_scaler = nb_scaler
+        model_info = "Gaussian Naive Bayes"
+    else:
+        current_model = nn_model
+        current_scaler = nn_scaler
+        model_info = "Neural Network (MLPClassifier)"
+    
     # Create input fields in columns
     col1, col2 = st.columns(2)
     
@@ -92,9 +115,9 @@ if nb_model is not None and scaler is not None:
             ]])
             
             # Scale and predict
-            features_scaled = scaler.transform(features)
-            prediction = nb_model.predict(features_scaled)[0]
-            probability = nb_model.predict_proba(features_scaled)[0]
+            features_scaled = current_scaler.transform(features)
+            prediction = current_model.predict(features_scaled)[0]
+            probability = current_model.predict_proba(features_scaled)[0]
             
             # Display results
             st.divider()
@@ -153,9 +176,16 @@ if nb_model is not None and scaler is not None:
 
     # Model information
     st.sidebar.header("ℹ️ Model Information")
-    st.sidebar.write("**Algorithm:** Naive Bayes")
+    st.sidebar.write(f"**Algorithm:** {model_info}")
     st.sidebar.write("**Features:** 9 customer attributes")
     st.sidebar.write("**Training Data:** 1000 synthetic customers")
+    
+    # Model comparison info
+    st.sidebar.info(f"**Selected Model:** {model_choice}")
+    if model_choice == "Naive Bayes":
+        st.sidebar.write("✅ Fast inference, good interpretability")
+    else:
+        st.sidebar.write("✅ Complex patterns, higher accuracy potential")
     
     # Feature explanations
     st.sidebar.header("📚 Feature Guide")

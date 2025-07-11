@@ -5,15 +5,17 @@ AI-powered customer subscription prediction platform with advanced machine learn
 ## Features
 
 - **Interactive Web Interface**: User-friendly form for entering customer data
+- **Model Selection**: Choose between Naive Bayes and Neural Network algorithms
 - **Real-time Predictions**: Instant subscription probability calculations with confidence scores
 - **Customer Insights**: Actionable recommendations based on customer behavior patterns
-- **Model Transparency**: Clear explanation of prediction factors and feature importance
+- **Model Transparency**: Clear explanation of prediction factors and algorithm differences
 - **Professional Branding**: Clean, modern interface designed for business users
 
 ## Model Details
 
-- **Primary Algorithm**: Gaussian Naive Bayes (deployed in web app)
-- **Secondary Algorithm**: Neural Network (available for comparison)
+- **Primary Algorithm**: Gaussian Naive Bayes (fast, interpretable)
+- **Secondary Algorithm**: Neural Network (complex patterns, higher accuracy potential)
+- **Web App**: Both models available with real-time switching
 - **Features**: 9 customer attributes (usage patterns, behavior metrics, demographics)
 - **Training Data**: 1000 synthetic customer records with identical train/test splits
 - **Performance**: Both models optimized for subscription prediction accuracy
@@ -21,10 +23,12 @@ AI-powered customer subscription prediction platform with advanced machine learn
 
 ## Usage
 
-1. Enter customer data in the form fields
-2. Click "Predict Subscription" to get results
-3. View subscription probability and confidence score
-4. Read customer insights and recommendations
+1. Select your preferred ML model (Naive Bayes or Neural Network)
+2. Enter customer data in the form fields
+3. Click "Predict Subscription" to get results
+4. View subscription probability and confidence score
+5. Read customer insights and recommendations
+6. Compare results between different models
 
 ## Input Features
 
