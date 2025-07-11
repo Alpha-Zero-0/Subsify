@@ -216,12 +216,10 @@ if app_mode == "Single Prediction":
                 current_model = nb_model
                 current_scaler = nb_scaler
                 model_info = "Gaussian Naive Bayes"
-                st.session_state.model_usage['nb'] += 1
             else:
                 current_model = nn_model
                 current_scaler = nn_scaler
                 model_info = "Neural Network (MLPClassifier)"
-                st.session_state.model_usage['nn'] += 1
         
         # Create input fields in columns
         col1, col2 = st.columns(2)
@@ -290,6 +288,17 @@ if app_mode == "Single Prediction":
         # Predict button
         if st.button("🚀 Predict Subscription", type="primary"):
             try:
+                # Increment usage counter when prediction is actually made
+                if not comparison_mode:
+                    if model_choice == "Naive Bayes":
+                        st.session_state.model_usage['nb'] += 1
+                    else:
+                        st.session_state.model_usage['nn'] += 1
+                else:
+                    # For comparison mode, increment both counters
+                    st.session_state.model_usage['nb'] += 1
+                    st.session_state.model_usage['nn'] += 1
+                
                 with st.spinner("Analyzing customer data..."):
                     # Prepare data
                     features = np.array([[
@@ -718,4 +727,4 @@ with st.sidebar:
 
 # Footer
 st.markdown("---")
-st.markdown("**Subsify** - Built with ❤️ using Streamlit | Advanced AI-powered subscription prediction")
+st.markdown("**Subsify** - Advanced AI-powered subscription prediction")
